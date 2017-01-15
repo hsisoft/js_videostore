@@ -49,6 +49,7 @@ function statement(customer, movies) {
 		return thisAmount;
 	}
 	
+	// This func is intentionally left not-inlined in case of changing calc logic
 	function calcFrequentRenterPoints(rental) {
 		return (movieFor(rental).code === "new" && rental.days > 2) ?  2 : 1;
 	}
