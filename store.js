@@ -1,20 +1,27 @@
 "use strict";
 
-function statement(customer, movies) {
+function statement(customer, movies, format) {
 	let totalFrequentRenterPoints = getTotalFrequentRenterPoints(customer);
 	let totalAmount = getTotalAmount(customer);
+	return (format === possibleFormats.TEXT) ? statementText(customer) : statementHTML(customer);
 
-	let result = `Rental Record for ${customer.name}\n`;
-	for (let rental of customer.rentals) {
-		let movie = movieFor(rental);
-		result += `\t${movie.title}\t${getAmount(rental)}\n`;
+	function statementText(customer) {
+		let result = `Rental Record for ${customer.name}\n`;
+		for (let rental of customer.rentals) {
+			let movie = movieFor(rental);
+			result += `\t${movie.title}\t${getAmount(rental)}\n`;
+		}
+
+		// add footer lines
+		result += `Amount owed is ${totalAmount}\n`;
+		result += `You earned ${totalFrequentRenterPoints} frequent renter points\n`;
+
+		return result;
 	}
 
-	// add footer lines
-	result += `Amount owed is ${totalAmount}\n`;
-	result += `You earned ${totalFrequentRenterPoints} frequent renter points\n`;
-
-	return result;
+	function statementHTML(customer) {
+		return "HTML output isn't implemented yet!";
+	}
 	
 	function movieFor(rental) {
 		return movies[rental.movieID];
@@ -89,4 +96,10 @@ let movies = {
 	// etc
 };
 
-console.log(statement(customer, movies));
+
+const possibleFormats = {
+	TEXT : 'txt',
+	HTML : 'html',
+};
+
+console.log(statement(customer, movies, possibleFormats.TEXT));
