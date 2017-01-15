@@ -18,19 +18,13 @@ class Customer {
 	}
 
 	get totalFrequentRenterPoints() {
-		let totalFrequentRenterPoints = 0;
-		for (let rental of this.rentals) {
-			totalFrequentRenterPoints += rental.frequentRenterPoints;
-		}
-		return totalFrequentRenterPoints;
+		return this.rentals
+			.map(rental => rental.frequentRenterPoints)
+			.reduce((a, b) => a + b);
 	}
 
 	get totalAmount() {
-		let totalAmount = 0;
-		for (let rental of this.rentals) {
-			totalAmount += rental.amount;
-		}
-		return totalAmount;
+		return this.rentals.reduce((total, rental) => total + rental.amount, 0);
 	}
 
 }
