@@ -43,6 +43,10 @@ function statement(customer, movies) {
 	result += `You earned ${totalFrequentRenterPoints} frequent renter points\n`;
 
 	return result;
+	
+	function movieFor(rental) {
+		movies[rental.movieID];
+	}
 }
 
 let customer = {
