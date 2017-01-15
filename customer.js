@@ -22,8 +22,15 @@ class Customer {
 		for (let rental of this.rentals) {
 			totalFrequentRenterPoints += rental.frequentRenterPoints;
 		}
-
 		return totalFrequentRenterPoints;
+	}
+
+	get totalAmount() {
+		let totalAmount = 0;
+		for (let rental of this.rentals) {
+			totalAmount += rental.amount;
+		}
+		return totalAmount;
 	}
 
 }
