@@ -1,7 +1,7 @@
 "use strict";
 
 class Rental {
-	constructor(data, movies){
+	constructor(data, movies) {
 		this._data = data;
 		this._movies = movies;
 	}
@@ -16,6 +16,10 @@ class Rental {
 
 	get movie() {
 		return this._movies[this.movieID];
+	}
+
+	get frequentRenterPoints() {
+		return (this.movie.code === "new" && rental.days > 2) ? 2 : 1;
 	}
 }
 
