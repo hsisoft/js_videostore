@@ -8,7 +8,7 @@ function statement(customer, movies) {
 	for (let rental of customer.rentals) {
 		let movie = movieFor(rental);
 		let thisAmount = getAmount(rental);
-		let totalFrequentRenterPoints = calcFrequentRenterPoints(rental);
+		totalFrequentRenterPoints += calcFrequentRenterPoints(rental);
 
 		//print figures for this rental
 		result += `\t${movie.title}\t${thisAmount}\n`;
